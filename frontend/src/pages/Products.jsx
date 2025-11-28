@@ -29,7 +29,22 @@ function Products() {
     if (loading) {
         return (
             <div className="products-container">
-                <div className="loading">Loading products...</div>
+                <div className="products-header">
+                    <h1>Our Products</h1>
+                    <p>Browse our wide selection of quality medications</p>
+                </div>
+                <div className="products-grid">
+                    {[...Array(8)].map((_, index) => (
+                        <div key={index} className="product-card skeleton">
+                            <div className="product-image skeleton-image"></div>
+                            <div className="product-info">
+                                <div className="skeleton-text skeleton-title"></div>
+                                <div className="skeleton-text skeleton-dosage"></div>
+                                <div className="skeleton-text skeleton-price"></div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         );
     }

@@ -1,5 +1,6 @@
 .home {
     min-height: calc(100vh - 80px);
+    width: 100%;
 }
 
 .hero {
@@ -7,10 +8,11 @@
     color: white;
     padding: 6rem 2rem;
     text-align: center;
+    width: 100%;
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -77,6 +79,7 @@
 .features {
     padding: 4rem 2rem;
     background: #f8f9fa;
+    width: 100%;
 }
 
 .section-title {
@@ -88,11 +91,11 @@
 }
 
 .features-grid {
-    max-width: 1200px;
-    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .feature-card {
@@ -123,4 +126,42 @@
 .feature-card p {
     color: #718096;
     line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero {
+        padding: 4rem 1.5rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .features {
+        padding: 3rem 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
 }

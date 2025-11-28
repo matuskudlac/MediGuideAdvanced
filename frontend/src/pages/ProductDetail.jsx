@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { productsAPI } from '../api/client';
+import { addToCart } from '../utils/cartUtils';
+import Toast from '../components/Toast';
 import './ProductDetail.css';
 
 function ProductDetail() {
@@ -9,6 +11,7 @@ function ProductDetail() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [quantity, setQuantity] = useState(1);
+    const [toast, setToast] = useState(null);
 
     useEffect(() => {
         fetchProduct();
@@ -29,8 +32,12 @@ function ProductDetail() {
     };
 
     const handleAddToCart = () => {
-        // TODO: Implement cart functionality
-        alert(`Added ${quantity} ${product.name} to cart!`);
+        addToCart(product, quantity);
+        setToast({
+            message: `Added ${quantity} ${product.name} to cart!`,
+            type: 'success'
+        });
+        setQuantity(1);
     };
 
     if (loading) return <div className="loading">Loading...</div>;
@@ -39,6 +46,14 @@ function ProductDetail() {
 
     return (
         <div className="product-detail-container">
+            {toast && (
+                <Toast
+                    message={toast.message}
+                    type={toast.type}
+                    onClose={() => setToast(null)}
+                />
+            )}
+
             <Link to="/products" className="back-link">← Back to Products</Link>
 
             <div className="product-detail">
