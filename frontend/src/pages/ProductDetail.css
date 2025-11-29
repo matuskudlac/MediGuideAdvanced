@@ -22,144 +22,117 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
-    background: white;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
 
-.product-detail-image {
-    width: 100%;
-    height: 400px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.product-detail-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.product-detail-image .placeholder-image {
-    font-size: 8rem;
-    opacity: 0.8;
-}
-
-.product-detail-info h1 {
-    font-size: 2rem;
-    color: #2d3748;
-    margin-bottom: 0.5rem;
-}
-
-.dosage {
-    color: #718096;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-}
-
-.manufacturer {
-    color: #a0aec0;
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-}
-
-.price-section {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.price {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #667eea;
-}
-
-.in-stock {
-    color: #38a169;
-    font-weight: 600;
-}
-
-.out-of-stock {
-    color: #e53e3e;
-    font-weight: 600;
-}
-
-.prescription-notice {
-    background: #fef3c7;
-    color: #92400e;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-}
-
-.description {
-    margin-bottom: 2rem;
-}
-
-.description h3 {
-    font-size: 1.25rem;
-    color: #2d3748;
-    margin-bottom: 0.75rem;
-}
-
-.description p {
-    color: #4a5568;
-    line-height: 1.8;
-}
-
-.purchase-section {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-end;
-}
-
-.quantity-selector {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.quantity-selector label {
-    font-weight: 600;
-    color: #2d3748;
-}
-
-.quantity-selector input {
-    width: 100px;
-    padding: 0.75rem;
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 1rem;
-}
-
-.add-to-cart-btn {
-    flex: 1;
-    padding: 1rem 2rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.add-to-cart-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-}
-
-@media (max-width: 768px) {
-    .product-detail {
-        grid-template-columns: 1fr;
+    .product-detail-info h1 {
+        font-size: 2rem;
+        color: #2d3748;
+        margin-bottom: 0.5rem;
     }
-}
+
+    .dosage {
+        color: #718096;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .manufacturer {
+        color: #a0aec0;
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .price-section {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .price {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #667eea;
+    }
+
+    .in-stock {
+        color: #38a169;
+        font-weight: 600;
+    }
+
+    .out-of-stock {
+        color: #e53e3e;
+        font-weight: 600;
+    }
+
+    .prescription-notice {
+        background: #fef3c7;
+        color: #92400e;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+    }
+
+    .description {
+        margin-bottom: 2rem;
+    }
+
+    .description h3 {
+        font-size: 1.25rem;
+        color: #2d3748;
+        margin-bottom: 0.75rem;
+    }
+
+    .description p {
+        color: #4a5568;
+        line-height: 1.8;
+    }
+
+    .purchase-section {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-end;
+    }
+
+    .quantity-selector {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .quantity-selector label {
+        font-weight: 600;
+        color: #2d3748;
+    }
+
+    .quantity-selector input {
+        width: 100px;
+        padding: 0.75rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 1rem;
+    }
+
+    .add-to-cart-btn {
+        flex: 1;
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .add-to-cart-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    @media (max-width: 768px) {
+        .product-detail {
+            grid-template-columns: 1fr;
+        }
+    }

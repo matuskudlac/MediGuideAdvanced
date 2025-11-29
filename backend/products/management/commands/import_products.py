@@ -58,6 +58,14 @@ class Command(BaseCommand):
                     # Extract size/dosage from Size column
                     size = row.get('Size', '')
                     
+                    # Convert Imgur URL to direct image URL
+                    image_url = row.get('Image_URL', '')
+                    if image_url and 'imgur.com/' in image_url:
+                        # Extract image ID from URL
+                        image_id = image_url.split('/')[-1]
+                        # Convert to direct image URL
+                        image_url = f'https://i.imgur.com/{image_id}.jpg'
+                    
                     # Create or update product using Name as unique identifier
                     product, created = Product.objects.update_or_create(
                         name=row['Name'],
@@ -71,6 +79,7 @@ class Command(BaseCommand):
                             'dosage': size,
                             'requires_prescription': False,  # None in your CSV require prescription
                             'is_active': is_active,
+                            'image': image_url,  # Store converted direct image URL
                         }
                     )
                     

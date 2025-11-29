@@ -37,7 +37,7 @@ class Product(models.Model):
     requires_prescription = models.BooleanField(default=False)
     
     # Images
-    image = models.ImageField(upload_to='products/', blank=True, null=True)
+    image = models.URLField(max_length=500, blank=True, help_text="External image URL (e.g., Imgur)")
     
     # Status
     is_active = models.BooleanField(default=True)
