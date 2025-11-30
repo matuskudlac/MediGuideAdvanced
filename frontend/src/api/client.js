@@ -16,6 +16,11 @@ export const productsAPI = {
     getCategories: () => api.get('/categories/'),
 };
 
+// Categories API
+export const categoriesAPI = {
+    getAll: () => api.get('/categories/'),
+};
+
 // Orders API
 export const ordersAPI = {
     create: (orderData) => api.post('/orders/', orderData),

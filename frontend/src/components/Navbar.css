@@ -58,7 +58,6 @@
 
 .navbar-link:hover {
   background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
 }
 
 .navbar-user {
@@ -84,7 +83,6 @@
 
 .navbar-user-link:hover {
   background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
 }
 
 .login-link {
@@ -100,7 +98,6 @@
 
 .register-link:hover {
   background: rgba(255, 255, 255, 0.9);
-  transform: translateY(-2px);
 }
 
 .logout-btn {
@@ -109,7 +106,9 @@
 }
 
 .logout-btn:hover {
-  background: rgba(255, 0, 0, 0.2);
+  background: rgba(255, 0, 0, 0.3);
+  box-shadow: 0 0 0 2px rgba(255, 100, 100, 0.4);
+  transform: scale(1.02);
 }
 
 /* Responsive Design */
