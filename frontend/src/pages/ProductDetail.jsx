@@ -21,6 +21,7 @@ function ProductDetail() {
         try {
             setLoading(true);
             const response = await productsAPI.getById(id);
+            console.log('Product data:', response.data); // Debug: Check what fields are returned
             setProduct(response.data);
             setError(null);
         } catch (err) {
@@ -40,7 +41,27 @@ function ProductDetail() {
         setQuantity(1);
     };
 
-    if (loading) return <div className="loading">Loading...</div>;
+    if (loading) return (
+        <div className="product-detail-container">
+            <div className="skeleton-back-link"></div>
+            <div className="product-detail">
+                <div className="skeleton-image"></div>
+                <div className="product-detail-info">
+                    <div className="skeleton-title"></div>
+                    <div className="skeleton-text skeleton-short"></div>
+                    <div className="skeleton-text skeleton-short"></div>
+                    <div className="skeleton-price"></div>
+                    <div className="skeleton-description"></div>
+                    <div className="skeleton-grid">
+                        <div className="skeleton-box"></div>
+                        <div className="skeleton-box"></div>
+                    </div>
+                    <div className="skeleton-usage"></div>
+                </div>
+            </div>
+        </div>
+    );
+
     if (error) return <div className="error">{error}</div>;
     if (!product) return <div className="error">Product not found</div>;
 
@@ -91,6 +112,29 @@ function ProductDetail() {
                         <h3>Description</h3>
                         <p>{product.description}</p>
                     </div>
+
+                    <div className="product-details-grid">
+                        {product.dosage && (
+                            <div className="dosage-info">
+                                <h3>Size/Dosage</h3>
+                                <p>{product.dosage}</p>
+                            </div>
+                        )}
+
+                        {product.ingredients && (
+                            <div className="active-ingredients">
+                                <h3>Active Ingredients</h3>
+                                <p>{product.ingredients}</p>
+                            </div>
+                        )}
+                    </div>
+
+                    {product.recommended_usage && (
+                        <div className="recommended-usage">
+                            <h3>How to Use</h3>
+                            <p>{product.recommended_usage}</p>
+                        </div>
+                    )}
 
                     {product.is_in_stock && (
                         <div className="purchase-section">

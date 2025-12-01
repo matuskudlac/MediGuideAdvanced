@@ -23,6 +23,10 @@ export const addToCart = (product, quantity = 1) => {
     }
 
     localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Dispatch custom event to notify cart update
+    window.dispatchEvent(new Event('cartUpdated'));
+
     return cart;
 };
 
@@ -30,6 +34,10 @@ export const removeFromCart = (productId) => {
     const cart = getCart();
     const updatedCart = cart.filter(item => item.id !== productId);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+    // Dispatch custom event to notify cart update
+    window.dispatchEvent(new Event('cartUpdated'));
+
     return updatedCart;
 };
 
@@ -43,6 +51,9 @@ export const updateCartQuantity = (productId, quantity) => {
         }
         item.quantity = quantity;
         localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Dispatch custom event to notify cart update
+        window.dispatchEvent(new Event('cartUpdated'));
     }
 
     return cart;
@@ -50,6 +61,7 @@ export const updateCartQuantity = (productId, quantity) => {
 
 export const clearCart = () => {
     localStorage.removeItem('cart');
+    window.dispatchEvent(new Event('cartUpdated'));
     return [];
 };
 

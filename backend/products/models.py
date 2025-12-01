@@ -34,6 +34,8 @@ class Product(models.Model):
     # Product details
     manufacturer = models.CharField(max_length=200, blank=True)
     dosage = models.CharField(max_length=100, blank=True, help_text="e.g., 500mg, 10ml")
+    ingredients = models.TextField(blank=True, help_text="Active ingredients in the medication")
+    recommended_usage = models.TextField(blank=True, help_text="How to use this medication")
     requires_prescription = models.BooleanField(default=False)
     
     # Images

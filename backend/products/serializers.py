@@ -18,7 +18,7 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'name', 'description', 'category', 'category_name',
             'price', 'stock_quantity', 'low_stock_threshold',
-            'manufacturer', 'dosage', 'requires_prescription',
+            'manufacturer', 'dosage', 'ingredients', 'recommended_usage', 'requires_prescription',
             'image', 'is_active', 'is_low_stock', 'is_in_stock',
             'created_at', 'updated_at'
         ]

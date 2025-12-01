@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { productsAPI, categoriesAPI } from '../api/client';
+import { addToCart } from '../utils/cartUtils';
+import Toast from '../components/Toast';
 import './Products.css';
+import addToCartIcon from '../assets/add-to-cart.png';
 
 function Products() {
     const [products, setProducts] = useState([]);
@@ -13,6 +16,7 @@ function Products() {
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [sortBy, setSortBy] = useState('none');
     const [showFilters, setShowFilters] = useState(false);
+    const [toast, setToast] = useState(null);
 
     useEffect(() => {
         fetchData();
@@ -98,6 +102,13 @@ function Products() {
         setSearchQuery('');
     };
 
+    const handleAddToCart = (e, product) => {
+        e.preventDefault();
+        e.stopPropagation();
+        addToCart(product, 1);
+        setToast({ message: `${product.name} added to cart!`, type: 'success' });
+    };
+
     if (loading) {
         return (
             <div className="products-container">
@@ -141,6 +152,14 @@ function Products() {
 
     return (
         <div className="products-container">
+            {toast && (
+                <Toast
+                    message={toast.message}
+                    type={toast.type}
+                    onClose={() => setToast(null)}
+                />
+            )}
+
             <div className="products-header">
                 <h1>Our Products</h1>
                 <p>Browse our wide selection of quality medications</p>
@@ -216,32 +235,43 @@ function Products() {
                     </div>
                 ) : (
                     filteredProducts.map((product) => (
-                        <Link
-                            to={`/products/${product.id}`}
-                            key={product.id}
-                            className="product-card"
-                        >
-                            <div className="product-image">
-                                {product.image ? (
-                                    <img src={product.image} alt={product.name} />
-                                ) : (
-                                    <div className="placeholder-image">💊</div>
-                                )}
-                            </div>
-                            <div className="product-info">
-                                <h3 className="product-name">{product.name}</h3>
-                                {product.dosage && (
-                                    <p className="product-dosage">{product.dosage}</p>
-                                )}
-                                <p className="product-price">${product.price}</p>
-                                {product.requires_prescription && (
-                                    <span className="prescription-badge">Prescription Required</span>
-                                )}
-                                {!product.is_in_stock && (
-                                    <span className="out-of-stock-badge">Out of Stock</span>
-                                )}
-                            </div>
-                        </Link>
+                        <div key={product.id} className="product-card-wrapper">
+                            <Link
+                                to={`/products/${product.id}`}
+                                className="product-card"
+                            >
+                                <div className="product-image">
+                                    {product.image ? (
+                                        <img src={product.image} alt={product.name} />
+                                    ) : (
+                                        <div className="placeholder-image">💊</div>
+                                    )}
+                                </div>
+                                <div className="product-info">
+                                    <h3 className="product-name">{product.name}</h3>
+                                    {product.dosage && (
+                                        <p className="product-dosage">{product.dosage}</p>
+                                    )}
+                                    <p className="product-price">${product.price}</p>
+                                    {product.requires_prescription && (
+                                        <span className="prescription-badge">Prescription Required</span>
+                                    )}
+                                    {!product.is_in_stock && (
+                                        <span className="out-of-stock-badge">Out of Stock</span>
+                                    )}
+                                </div>
+                            </Link>
+
+                            {product.is_in_stock && (
+                                <button
+                                    className="add-to-cart-btn-quick"
+                                    onClick={(e) => handleAddToCart(e, product)}
+                                    title="Add to cart"
+                                >
+                                    <img src={addToCartIcon} alt="Add to cart" className="cart-btn-icon" />
+                                </button>
+                            )}
+                        </div>
                     ))
                 )}
             </div>
