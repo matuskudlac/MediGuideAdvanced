@@ -173,3 +173,6 @@ SUPABASE_SERVICE_KEY = os.getenv('SUPABASE_SERVICE_KEY', '')
 # Google AI Studio Configuration (Optional)
 GOOGLE_AI_API_KEY = os.getenv('GOOGLE_AI_API_KEY', '')
 
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY', '')
+

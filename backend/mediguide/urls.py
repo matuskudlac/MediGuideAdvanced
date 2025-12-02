@@ -7,7 +7,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework import routers
 from products.views import CategoryViewSet, ProductViewSet
-from orders.views import OrderViewSet
+from orders.views import OrderViewSet, create_payment_intent_view
 from users.views import register, login, logout, change_password
 
 # Create API router
@@ -23,6 +23,7 @@ urlpatterns = [
     path('api/auth/login/', login, name='login'),
     path('api/auth/logout/', logout, name='logout'),
     path('api/auth/change-password/', change_password, name='change-password'),
+    path('api/create-payment-intent/', create_payment_intent_view, name='create-payment-intent'),
 ]
 
 # Serve media files in development

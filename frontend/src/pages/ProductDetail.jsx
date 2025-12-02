@@ -88,7 +88,6 @@ function ProductDetail() {
 
                 <div className="product-detail-info">
                     <h1>{product.name}</h1>
-                    {product.dosage && <p className="dosage">{product.dosage}</p>}
                     {product.manufacturer && (
                         <p className="manufacturer">By {product.manufacturer}</p>
                     )}

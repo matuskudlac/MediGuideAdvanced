@@ -110,15 +110,15 @@ function Cart() {
                     </div>
                     <div className="summary-row">
                         <span>Shipping:</span>
-                        <span>FREE</span>
+                        <span>TBD</span>
                     </div>
                     <div className="summary-row total">
                         <span>Total:</span>
                         <span>${total.toFixed(2)}</span>
                     </div>
-                    <button className="btn-checkout">
+                    <Link to="/checkout" className="btn-checkout">
                         Proceed to Checkout
-                    </button>
+                    </Link>
                     <Link to="/products" className="btn-continue">
                         Continue Shopping
                     </Link>

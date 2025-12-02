@@ -19,11 +19,15 @@ class Order(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     
     # Shipping information
+    shipping_name = models.CharField(max_length=200, default='')
     shipping_address = models.TextField()
     shipping_city = models.CharField(max_length=100)
     shipping_state = models.CharField(max_length=100)
     shipping_zip = models.CharField(max_length=20)
     shipping_phone = models.CharField(max_length=20)
+    
+    # Payment information
+    payment_intent_id = models.CharField(max_length=255, blank=True, help_text="Stripe Payment Intent ID")
     
     # Order totals
     subtotal = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
