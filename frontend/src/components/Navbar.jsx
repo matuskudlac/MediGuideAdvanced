@@ -89,6 +89,9 @@ function Navbar() {
                                     <Link to="/profile" className="dropdown-item" onClick={() => setShowUserMenu(false)}>
                                         👤 Profile
                                     </Link>
+                                    <Link to="/orders" className="dropdown-item" onClick={() => setShowUserMenu(false)}>
+                                        📦 Orders
+                                    </Link>
                                     <button onClick={handleLogout} className="dropdown-item logout-item">
                                         🚪 Logout
                                     </button>
