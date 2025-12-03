@@ -26,11 +26,11 @@ $$ LANGUAGE plpgsql;
 
 -- Attach trigger to orders_orderitem table
 -- Note: This will be created after Django migrations
--- DROP TRIGGER IF EXISTS trigger_update_inventory ON orders_orderitem;
--- CREATE TRIGGER trigger_update_inventory
---     AFTER INSERT ON orders_orderitem
---     FOR EACH ROW
---     EXECUTE FUNCTION update_inventory_on_order();
+DROP TRIGGER IF EXISTS trigger_update_inventory ON orders_orderitem;
+CREATE TRIGGER trigger_update_inventory
+    AFTER INSERT ON orders_orderitem
+    FOR EACH ROW
+    EXECUTE FUNCTION update_inventory_on_order();
 
 
 -- 2. Trigger: Restore inventory when order is cancelled
@@ -50,11 +50,11 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- DROP TRIGGER IF EXISTS trigger_restore_inventory ON orders_order;
--- CREATE TRIGGER trigger_restore_inventory
---     AFTER UPDATE ON orders_order
---     FOR EACH ROW
---     EXECUTE FUNCTION restore_inventory_on_cancel();
+DROP TRIGGER IF EXISTS trigger_restore_inventory ON orders_order;
+CREATE TRIGGER trigger_restore_inventory
+    AFTER UPDATE ON orders_order
+    FOR EACH ROW
+    EXECUTE FUNCTION restore_inventory_on_cancel();
 
 
 -- 3. Trigger: Audit log for price changes
@@ -78,11 +78,11 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- DROP TRIGGER IF EXISTS trigger_log_price_change ON products_product;
--- CREATE TRIGGER trigger_log_price_change
---     AFTER UPDATE ON products_product
---     FOR EACH ROW
---     EXECUTE FUNCTION log_price_change();
+DROP TRIGGER IF EXISTS trigger_log_price_change ON products_product;
+CREATE TRIGGER trigger_log_price_change
+    AFTER UPDATE ON products_product
+    FOR EACH ROW
+    EXECUTE FUNCTION log_price_change();
 
 
 -- ============================================
@@ -272,9 +272,9 @@ $$ LANGUAGE plpgsql;
 
 -- Note: Django creates some indexes automatically, but these are additional ones
 
--- CREATE INDEX IF NOT EXISTS idx_product_stock ON products_product(stock_quantity) WHERE is_active = TRUE;
--- CREATE INDEX IF NOT EXISTS idx_order_status_date ON orders_order(status, created_at);
--- CREATE INDEX IF NOT EXISTS idx_orderitem_product ON orders_orderitem(product_id);
+CREATE INDEX IF NOT EXISTS idx_product_stock ON products_product(stock_quantity) WHERE is_active = TRUE;
+CREATE INDEX IF NOT EXISTS idx_order_status_date ON orders_order(status, created_at);
+CREATE INDEX IF NOT EXISTS idx_orderitem_product ON orders_orderitem(product_id);
 
 
 -- ============================================
