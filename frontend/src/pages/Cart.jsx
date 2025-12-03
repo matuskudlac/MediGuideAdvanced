@@ -26,8 +26,17 @@ function Cart() {
     };
 
     const handleQuantityChange = (productId, newQuantity) => {
-        updateCartQuantity(productId, parseInt(newQuantity));
-        loadCart();
+        try {
+            updateCartQuantity(productId, parseInt(newQuantity));
+            loadCart();
+        } catch (error) {
+            setToast({
+                message: error.message,
+                type: 'error'
+            });
+            // Reload cart to reset the input to valid quantity
+            loadCart();
+        }
     };
 
     const total = getCartTotal();
@@ -83,6 +92,7 @@ function Cart() {
                                 <input
                                     type="number"
                                     min="1"
+                                    max={item.stock_quantity || 999}
                                     value={item.quantity}
                                     onChange={(e) => handleQuantityChange(item.id, e.target.value)}
                                 />

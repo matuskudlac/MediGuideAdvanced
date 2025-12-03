@@ -105,8 +105,12 @@ function Products() {
     const handleAddToCart = (e, product) => {
         e.preventDefault();
         e.stopPropagation();
-        addToCart(product, 1);
-        setToast({ message: `${product.name} added to cart!`, type: 'success' });
+        try {
+            addToCart(product, 1);
+            setToast({ message: `${product.name} added to cart!`, type: 'success' });
+        } catch (error) {
+            setToast({ message: error.message, type: 'error' });
+        }
     };
 
     if (loading) {

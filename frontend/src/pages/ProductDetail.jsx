@@ -33,12 +33,19 @@ function ProductDetail() {
     };
 
     const handleAddToCart = () => {
-        addToCart(product, quantity);
-        setToast({
-            message: `Added ${quantity} ${product.name} to cart!`,
-            type: 'success'
-        });
-        setQuantity(1);
+        try {
+            addToCart(product, quantity);
+            setToast({
+                message: `Added ${quantity} ${product.name} to cart!`,
+                type: 'success'
+            });
+            setQuantity(1);
+        } catch (error) {
+            setToast({
+                message: error.message,
+                type: 'error'
+            });
+        }
     };
 
     if (loading) return (

@@ -9,6 +9,22 @@ export const addToCart = (product, quantity = 1) => {
     const cart = getCart();
     const existingItem = cart.find(item => item.id === product.id);
 
+    // Calculate total quantity if item already exists in cart
+    const currentCartQuantity = existingItem ? existingItem.quantity : 0;
+    const totalQuantity = currentCartQuantity + quantity;
+
+    // Check stock availability
+    const availableStock = product.stock_quantity || 0;
+
+    if (totalQuantity > availableStock) {
+        const remainingStock = availableStock - currentCartQuantity;
+        throw new Error(
+            remainingStock > 0
+                ? `Only ${remainingStock} more item(s) available. You already have ${currentCartQuantity} in your cart.`
+                : `Cannot add more items. You already have ${currentCartQuantity} in your cart (max available).`
+        );
+    }
+
     if (existingItem) {
         existingItem.quantity += quantity;
     } else {
@@ -19,6 +35,7 @@ export const addToCart = (product, quantity = 1) => {
             image: product.image,
             dosage: product.dosage,
             quantity: quantity,
+            stock_quantity: product.stock_quantity, // Store for reference
         });
     }
 
@@ -49,6 +66,13 @@ export const updateCartQuantity = (productId, quantity) => {
         if (quantity <= 0) {
             return removeFromCart(productId);
         }
+
+        // Check stock availability
+        const availableStock = item.stock_quantity || 0;
+        if (quantity > availableStock) {
+            throw new Error(`Only ${availableStock} item(s) available in stock.`);
+        }
+
         item.quantity = quantity;
         localStorage.setItem('cart', JSON.stringify(cart));
 
