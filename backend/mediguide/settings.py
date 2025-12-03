@@ -161,6 +161,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Vite default port
     "http://127.0.0.1:3000",
     "http://127.0.0.1:5173",
+    "http://localhost",       # Docker frontend (port 80)
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -175,4 +176,7 @@ GOOGLE_AI_API_KEY = os.getenv('GOOGLE_AI_API_KEY', '')
 
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY', '')
+
+# Trigger reload to apply settings
+
 
