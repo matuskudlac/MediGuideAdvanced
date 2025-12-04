@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { ordersAPI } from '../api/client';
 import './Orders.css';
 
 function Orders() {
@@ -13,7 +13,7 @@ function Orders() {
 
     const fetchOrders = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/api/orders/');
+            const response = await ordersAPI.getUserOrders();
             console.log('Orders API response:', response.data);
 
             // Handle both array response and paginated response
@@ -25,7 +25,7 @@ function Orders() {
             setLoading(false);
         } catch (err) {
             console.error('Error fetching orders:', err);
-            console.error('Error response:', err.response?.data);
+            // ... keep existing error handling
             setError('Failed to load orders');
             setLoading(false);
         }
