@@ -24,6 +24,7 @@ urlpatterns = [
     path('api/auth/logout/', logout, name='logout'),
     path('api/auth/change-password/', change_password, name='change-password'),
     path('api/create-payment-intent/', create_payment_intent_view, name='create-payment-intent'),
+    path('api/reports/', include('reports.urls')),
 ]
 
 # Serve media files in development

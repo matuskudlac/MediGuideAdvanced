@@ -92,6 +92,11 @@ function Navbar() {
                                     <Link to="/orders" className="dropdown-item" onClick={() => setShowUserMenu(false)}>
                                         📦 Orders
                                     </Link>
+                                    {user.email === 'admin@mediguide.com' && (
+                                        <Link to="/admin/reports" className="dropdown-item" onClick={() => setShowUserMenu(false)}>
+                                            📊 Reports
+                                        </Link>
+                                    )}
                                     <button onClick={handleLogout} className="dropdown-item logout-item">
                                         🚪 Logout
                                     </button>
